@@ -1,13 +1,25 @@
 <script>
     import PollDetails from "./PollDetails.svelte";
-
-    export let polls = [];
+    import PollStore from "../stores/PollStore";
+    // import {onDestroy, onMount} from "svelte";
+    // export let polls = [];
+    // const unsub = PollStore.subscribe((data) => {
+    //     polls = data;
+    // });
+    // onMount(() => {
+    //     // get the data from DB
+    //     console.log('store mounted');
+    // });
+    //onDestroy(() => {
+    //    console.log('store destroyed');
+    //    unsub();
+    // });
 </script>
 
 <div class="poll-list">
-    {#each polls as poll (poll.id)}
+    {#each $PollStore as poll (poll.id)}
         <div>
-            <PollDetails {poll} on:vote/> <!-- forward the event to the parent -->
+            <PollDetails {poll}/> 
         </div>
 
     {/each}
